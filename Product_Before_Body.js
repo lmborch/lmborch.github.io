@@ -1,10 +1,9 @@
 debugger;
 const prefix = '€&nbsp;'; // Currency prefix
-let minNumberOfDays = 1; // Minimum number of rental days
+const minNumberOfDays = 1; // Minimum number of rental days
 
 // Get initial rental price
-let basePrice = $('.current-item-price').text();
-basePrice = Number(basePrice.replace(/[^0-9.-]+/g, "")) / 100;
+let basePrice = Number($('.current-item-price').text().replace(/[^0-9.-]+/g, "")) / 100;
 
 let subtotalPrice = 0;
 
@@ -27,25 +26,21 @@ if ($('.insurranceprice').hasClass('w-condition-invisible')) {
 }
 
 let calcdays = 0;
-let calcbaseprice = Number(basePrice * numberOfProducts);
+let calcbaseprice = basePrice * numberOfProducts;
 
 var submitBtn = $(".add-to-cart-button");
 submitBtn.attr("disabled", true);
 submitBtn.css("display", 'inline-block');
 
 // should already be on the page
-let destination = '';
-
-if (sessionStorage.getItem('destination')) {
-  destination = sessionStorage.getItem('destination');
-}
+let destination = sessionStorage.getItem('destination') || '';
 
 // Calculate days and price
 const calculateDays = (date1, date2) => {
   var Difference_In_Time = moment(date2, "DD/MM/YYYY").toDate().getTime() - moment(date1, "DD/MM/YYYY").toDate().getTime();
   var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
-  // Calculate date difference (exampel Fre-lør er kun 1 dag.)  Men samme dag (hvis overhovede mulgit), skal stadig koste 1 dag.
+  // Calculate date difference (example: Fri-Sat is only 1 day.) But the same day (if possible) should still cost 1 day.
   calcdays = Math.max(Difference_In_Days, 1);
 
   $('#bookstartdate').val(moment(date1, "DD/MM/YYYY").format('DD-MM-YYYY'));
@@ -59,35 +54,27 @@ const calculateDays = (date1, date2) => {
 };
 
 // On Click event
-$('#addinsurrancebtn').click(
-  function () {
-    calcinsurrance = this.checked ? insurranceprice : 0;
-    calculatePrice();
-  }
-)
+$('#addinsurrancebtn').click(function () {
+  calcinsurrance = this.checked ? insurranceprice : 0;
+  calculatePrice();
+});
 
-$('.w-commerce-commerceaddtocartquantityinput').change(
-  function () {
-    numberOfProducts = Number($(this).val());
-    console.log('.w - commerce - commerceaddtocartquantityinput ' + numberOfProducts);
-    calculatePrice();
-  }
-)
-$(".quantity-input button").on("click",
-  function () {
-    numberOfProducts = Number($(".w-commerce-commerceaddtocartquantityinput").val())
-    calculatePrice();
-  });
+$('.w-commerce-commerceaddtocartquantityinput').change(function () {
+  numberOfProducts = Number($(this).val());
+  calculatePrice();
+});
+
+$(".quantity-input button").on("click", function () {
+  numberOfProducts = Number($(".w-commerce-commerceaddtocartquantityinput").val());
+  calculatePrice();
+});
 
 // If variant exists
 if ($(".variantinput").length > 0) {
-  $(".variantinput").on("change",
-    function () {
-      basePrice = $('.current-item-price').text();
-      basePrice = Number(basePrice.replace(/[^0-9.-]+/g, "")) / 100;
-      calculatePrice();
-    }
-  );
+  $(".variantinput").on("change", function () {
+    basePrice = Number($('.current-item-price').text().replace(/[^0-9.-]+/g, "")) / 100;
+    calculatePrice();
+  });
 }
 
 const calculatePrice = () => {
@@ -108,30 +95,28 @@ const calculatePrice = () => {
   }
 
   // Calculate Total Price
-  calcbaseprice = Number(basePrice * numberOfProducts);
-  subtotalPrice = Number(calcdays * calcbaseprice);
-  subtotalPrice = Number(subtotalPrice + calcdeposit);
-  subtotalPrice = Number(subtotalPrice + calcinsurrance);
+  calcbaseprice = basePrice * numberOfProducts;
+  subtotalPrice = calcdays * calcbaseprice;
+  subtotalPrice += calcdeposit;
+  subtotalPrice += calcinsurrance;
 
   // Calculate Unit Price
-  let bookprice = Number(calcdays * basePrice);
-  bookprice = Number(bookprice + calcdeposit);
-  bookprice = Number(bookprice + calcinsurrance);
+  let bookprice = calcdays * basePrice;
+  bookprice += calcdeposit;
+  bookprice += calcinsurrance;
 
   if (!isNaN(subtotalPrice)) {
-
     $('#bookquantity').val(numberOfProducts);
     $('#bookprice').val(bookprice);
 
     if (sessionStorage.getItem('destinationName')) {
       $('#bookdestination').val(sessionStorage.getItem('destinationName'));
-    }
-    else {
+    } else {
       $('#bookdestination').val(destination);
     }
 
-    // update sub total text
-    $('.current-item-price').html(prefix + Number(subtotalPrice).toFixed(2));
+    // Update sub total text
+    $('.current-item-price').html(prefix + subtotalPrice.toFixed(2));
   }
 }
 
@@ -175,6 +160,7 @@ function getDestinationDates(dest) {
     destinationEndDate
   };
 }
+
 let { destinationStartDate, destinationEndDate } = getDestinationDates(destination);
 
 /// Date Range Picker Setup
@@ -200,13 +186,11 @@ const configObject = {
     sessionStorage.setItem('bookstartdate', s1);
     sessionStorage.setItem('bookenddate', s2);
   }
-}
+};
 
-$('#dates-form').dateRangePicker(configObject).bind('datepicker-change',
-  function (event, obj) {
-    calculateDays(obj.date1, obj.date2); 
-  }
-)
+$('#dates-form').dateRangePicker(configObject).bind('datepicker-change', function (event, obj) {
+  calculateDays(obj.date1, obj.date2);
+});
 
 // set dates if already selected
 if (sessionStorage.getItem('bookstartdate') && sessionStorage.getItem('bookenddate')) {
