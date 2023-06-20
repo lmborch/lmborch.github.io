@@ -153,8 +153,8 @@ function getDestinationDates(dest) {
       destinationEndDate = moment("30/09/2023", "DD/MM/YYYY");
       break;
     default:
-      destinationStartDate = tomorrow;
-      destinationEndDate = tomorrow.add(6, 'M');
+      destinationStartDate = moment("01/06/2023", "DD/MM/YYYY");
+      destinationEndDate = moment("30/09/2023", "DD/MM/YYYY");
   }
 
   //Ensure that Start date is always at least tomorrow
@@ -206,6 +206,7 @@ if (sessionStorage.getItem('bookstartdate') && sessionStorage.getItem('bookendda
 
 ////// DROP DOWN /////////
 function dropDownFunction(name, slug) {
+  debugger;
   // Update sessionStorage and destination variable
   sessionStorage.setItem('destination', slug);
   sessionStorage.setItem('destinationName', name);
@@ -225,13 +226,12 @@ function dropDownFunction(name, slug) {
 //Done: Save dates for init later
 //TODO: Avoid 0.00 initial cost
 //TODO: Fix dates (on destination change).
+//TODO: Change back to local storage?
 
-jQuery(document).ready(function ($) {
-  // Set dropdown title based on local storage
-  if (sessionStorage.getItem('destination')) {
-    $('#DestinationDropdownTitle').text(sessionStorage.getItem('destination'));
-  }
-  if (sessionStorage.getItem('destinationName')) {
-    $('#DestinationDropdownTitle').text(sessionStorage.getItem('destinationName'));
-  }
-});
+// Set dropdown title based on SessionStorage
+if (sessionStorage.getItem('destination')) {
+  $('#DestinationDropdownTitle').text(sessionStorage.getItem('destination'));
+}
+if (sessionStorage.getItem('destinationName')) {
+  $('#DestinationDropdownTitle').text(sessionStorage.getItem('destinationName'));
+}
