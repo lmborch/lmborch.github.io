@@ -213,6 +213,9 @@ function dropDownFunction(name, slug) {
 
   destination = slug;
 
+  //Recalculated the destination start and end dates on dropdown change
+  destinationStartDate, destinationEndDate  = getDestinationDates(destination);
+
   // Set Dropdown title to selected title
   $('#DestinationDropdownTitle').text(name);
 
