@@ -80,13 +80,13 @@ if ($(".variantinput").length > 0) {
 const calculatePrice = () => {
 
   // activate submit button if min. number of days is met and destination is selected
-  if (calcdays >= minNumberOfDays && destination != '' && destination != '*') {
+  if (calcdays >= minNumberOfDays && destination !== '' && destination !== '*') {
     submitBtn.attr("disabled", false);
     submitBtn.val('Rent Gear')
   }
   else {
     submitBtn.attr("disabled", true);
-    if (destination == '' || destination == '*') {
+    if (destination === '' || destination === '*') {
       submitBtn.val('Please select destination');
     }
     else {
@@ -201,7 +201,7 @@ if (sessionStorage.getItem('bookstartdate') && sessionStorage.getItem('bookendda
 
 ////// DROP DOWN /////////
 function dropDownFunction(name, slug) {
-  // Update sessionStorage and destionation variable
+  // Update sessionStorage and destination variable
   sessionStorage.setItem('destination', slug);
   sessionStorage.setItem('destinationName', name);
 
@@ -215,20 +215,18 @@ function dropDownFunction(name, slug) {
   calculatePrice();
 }
 
-//TODO: Add OnClik from code instead if in design
+//TODO: Add OnClick from code instead if in design
 //TODO: Fix .ready for all initial requests
 //Done: Save dates for init later
-//TODO: Avoid 0.00inital cost
-//TODO: FIx dates (on destiantion change).
+//TODO: Avoid 0.00 initial cost
+//TODO: Fix dates (on destination change).
 
-jQuery(document).ready(
+jQuery(document).ready(function ($) {
   // Set dropdown title based on local storage
-  function ($) {
-    if (sessionStorage.getItem('destination')) {
-      $('#DestinationDropdownTitle').text(sessionStorage.getItem('destination'));
-    }
-    if (sessionStorage.getItem('destinationName')) {
-      $('#DestinationDropdownTitle').text(sessionStorage.getItem('destinationName'));
-    }
+  if (sessionStorage.getItem('destination')) {
+    $('#DestinationDropdownTitle').text(sessionStorage.getItem('destination'));
   }
-);
+  if (sessionStorage.getItem('destinationName')) {
+    $('#DestinationDropdownTitle').text(sessionStorage.getItem('destinationName'));
+  }
+});
