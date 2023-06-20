@@ -1,3 +1,5 @@
 // the hello world program
-debugger;
-console.log('Hello World');
+//debugger;
+!function () {
+console.log('Hello World');    
+}
