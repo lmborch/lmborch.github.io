@@ -36,8 +36,8 @@
     // should already be on the page
     let destination = ''
 
-    if (localStorage.getItem('destination')) {
-        destination = localStorage.getItem('destination')
+    if (sessionStorage.getItem('destination')) {
+        destination = sessionStorage.getItem('destination')
     }
 
 
@@ -127,8 +127,8 @@
             $('#bookquantity').val(numberOfProducts);
             $('#bookprice').val(bookprice);
 
-            if (localStorage.getItem('destinationName')) {
-                $('#bookdestination').val(localStorage.getItem('destinationName'));
+            if (sessionStorage.getItem('destinationName')) {
+                $('#bookdestination').val(sessionStorage.getItem('destinationName'));
             }
             else {
                 $('#bookdestination').val(destination);
@@ -201,8 +201,8 @@
         setValue: function (s, s1, s2) {
             $('#startdate').val(s1);
             $('#enddate').val(s2);
-            localStorage.setItem('bookstartdate', s1);
-            localStorage.setItem('bookenddate', s2);
+            sessionStorage.setItem('bookstartdate', s1);
+            sessionStorage.setItem('bookenddate', s2);
         }
     }
 
@@ -213,17 +213,17 @@
     )
 
     // set dates if already selected
-    if (localStorage.getItem('bookstartdate') && localStorage.getItem('bookenddate')) {
-        $('#startdate').val(localStorage.getItem('bookstartdate'));
-        $('#enddate').val(localStorage.getItem('bookenddate'));
-        calculateDays(localStorage.getItem('bookstartdate'), localStorage.getItem('bookenddate'));
+    if (sessionStorage.getItem('bookstartdate') && sessionStorage.getItem('bookenddate')) {
+        $('#startdate').val(sessionStorage.getItem('bookstartdate'));
+        $('#enddate').val(sessionStorage.getItem('bookenddate'));
+        calculateDays(sessionStorage.getItem('bookstartdate'), sessionStorage.getItem('bookenddate'));
     }
 
     ////// DROP DOWN /////////
     function dropDownFunction(name, slug) {
-        // Update localStorage and destionation variable
-        localStorage.setItem('destination', slug);
-        localStorage.setItem('destinationName', name);
+        // Update sessionStorage and destionation variable
+        sessionStorage.setItem('destination', slug);
+        sessionStorage.setItem('destinationName', name);
 
         destination = slug;
 
@@ -244,11 +244,11 @@
     jQuery(document).ready(
         // Set dropdown title based on local storage
         function ($) {
-            if (localStorage.getItem('destination')) {
-                $('#DestinationDropdownTitle').text(localStorage.getItem('destination'));
+            if (sessionStorage.getItem('destination')) {
+                $('#DestinationDropdownTitle').text(sessionStorage.getItem('destination'));
             }
-            if (localStorage.getItem('destinationName')) {
-                $('#DestinationDropdownTitle').text(localStorage.getItem('destinationName'));
+            if (sessionStorage.getItem('destinationName')) {
+                $('#DestinationDropdownTitle').text(sessionStorage.getItem('destinationName'));
             }
         }
     );
