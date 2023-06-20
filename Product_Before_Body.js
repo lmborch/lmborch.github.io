@@ -1,7 +1,12 @@
+
+// Debugger statement for debugging
 debugger;
+
+//Constants
 const prefix = '€&nbsp;'; // Currency prefix
 const minNumberOfDays = 1; // Minimum number of rental days
 
+// Variable declaration
 // Get initial rental price
 let basePrice = Number($('.current-item-price').text().replace(/[^0-9.-]+/g, "")) / 100;
 
@@ -120,7 +125,7 @@ const calculatePrice = () => {
   }
 }
 
-// Init
+// Initial price calculation
 calculatePrice();
 
 /// Get Destination Start and end Dates based on the destination
