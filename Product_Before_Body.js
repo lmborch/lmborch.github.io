@@ -1,12 +1,11 @@
 
 // Debugger statement for debugging
-debugger;
+//debugger;
 
 //Constants
 const prefix = '€&nbsp;'; // Currency prefix
 const minNumberOfDays = 1; // Minimum number of rental days
 
-// Variable declaration
 // Get initial rental price
 let basePrice = Number($('.current-item-price').text().replace(/[^0-9.-]+/g, "")) / 100;
 
@@ -206,16 +205,13 @@ if (sessionStorage.getItem('bookstartdate') && sessionStorage.getItem('bookendda
 
 ////// DROP DOWN /////////
 function dropDownFunction(name, slug) {
-  debugger;
   // Update sessionStorage and destination variable
   sessionStorage.setItem('destination', slug);
   sessionStorage.setItem('destinationName', name);
 
   destination = slug;
 
-  //Recalculated the destination start and end dates on dropdown change
-  destinationStartDate, destinationEndDate  = getDestinationDates(destination);
-
+  //TODO: Add recalculation of date range start end dates
   // Set Dropdown title to selected title
   $('#DestinationDropdownTitle').text(name);
 
