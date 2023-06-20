@@ -192,6 +192,7 @@ const configObject = {
   }
 };
 
+//TODO: Make sure to (re-)config picker on destination change
 $('#dates-form').dateRangePicker(configObject).bind('datepicker-change', function (event, obj) {
   calculateDays(obj.date1, obj.date2);
 });
@@ -222,7 +223,6 @@ function dropDownFunction(name, slug) {
 
 //TODO: Add OnClick from code instead if in design
 //TODO: Fix .ready for all initial requests
-//Done: Save dates for init later
 //TODO: Avoid 0.00 initial cost
 //TODO: Fix dates (on destination change).
 //TODO: Change back to local storage?
