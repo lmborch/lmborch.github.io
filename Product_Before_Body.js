@@ -131,7 +131,9 @@ calculatePrice();
 function getDestinationDates(dest) {
   //TODO: Get dates from hidden fields from CMS?
 
-  let tomorrow = moment().add(1, 'days');
+  const minLeadTimeDays = 2; // Minimum number of days til rental starts
+
+  let earliestStartDate = moment().add(minLeadTimeDays, 'days');
   let destinationStartDate, destinationEndDate;
 
   switch (dest.toLowerCase()) {
@@ -145,19 +147,19 @@ function getDestinationDates(dest) {
       break;
     case 'mallorca':
       destinationStartDate = moment("15/07/2023", "DD/MM/YYYY");
-      destinationEndDate = moment("17/09/2023", "DD/MM/YYYY");
+      destinationEndDate = moment("30/11/2023", "DD/MM/YYYY");
       break;
     case 'bornholm':
       destinationStartDate = moment("01/06/2023", "DD/MM/YYYY");
-      destinationEndDate = moment("30/09/2023", "DD/MM/YYYY");
+      destinationEndDate = moment("30/11/2023", "DD/MM/YYYY");
       break;
     default:
       destinationStartDate = moment("01/06/2023", "DD/MM/YYYY");
-      destinationEndDate = moment("30/09/2023", "DD/MM/YYYY");
+      destinationEndDate = moment("30/11/2023", "DD/MM/YYYY");
   }
 
-  //Ensure that Start date is always at least tomorrow
-  destinationStartDate = moment.max(tomorrow, destinationStartDate).format('DD-MM-YYYY');
+  //Ensure that Start date is always at least earliest days
+  destinationStartDate = moment.max(earliestStartDate, destinationStartDate).format('DD-MM-YYYY');
   destinationEndDate = destinationEndDate.format('DD-MM-YYYY');
   return {
     destinationStartDate,
