@@ -86,15 +86,15 @@ const calculatePrice = () => {
   // activate submit button if min. number of days is met and destination is selected
   if (calcdays >= minNumberOfDays && destination !== '' && destination !== '*') {
     submitBtn.attr("disabled", false);
-    submitBtn.val('Rent Gear')
+    submitBtn.val('Book gear')
   }
   else {
     submitBtn.attr("disabled", true);
     if (destination === '' || destination === '*') {
-      submitBtn.val('Please select destination');
+      submitBtn.val('Vælg destination');
     }
     else {
-      submitBtn.val('Please select dates');
+      submitBtn.val('Vælg datoer');
     }
   }
 
