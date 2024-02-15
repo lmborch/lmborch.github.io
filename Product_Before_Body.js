@@ -146,15 +146,15 @@ function getDestinationDates(dest) {
       destinationEndDate = moment("31/10/2024", "DD/MM/YYYY");
       break;
     case 'mallorca':
-      destinationStartDate = moment("15/07/2024", "DD/MM/YYYY");
+      destinationStartDate = moment("01/04/2024", "DD/MM/YYYY");
       destinationEndDate = moment("30/11/2024", "DD/MM/YYYY");
       break;
     case 'bornholm':
-      destinationStartDate = moment("01/06/2024", "DD/MM/YYYY");
+      destinationStartDate = moment("01/04/2024", "DD/MM/YYYY");
       destinationEndDate = moment("30/11/2024", "DD/MM/YYYY");
       break;
     default:
-      destinationStartDate = moment("01/06/2024", "DD/MM/YYYY");
+      destinationStartDate = moment("01/04/2024", "DD/MM/YYYY");
       destinationEndDate = moment("30/11/2024", "DD/MM/YYYY");
   }
 
