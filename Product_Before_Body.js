@@ -138,24 +138,24 @@ function getDestinationDates(dest) {
 
   switch (dest.toLowerCase()) {
     case 'zealand':
-      destinationStartDate = moment("01/04/2023", "DD/MM/YYYY");
-      destinationEndDate = moment("31/10/2023", "DD/MM/YYYY");
+      destinationStartDate = moment("01/04/2024", "DD/MM/YYYY");
+      destinationEndDate = moment("31/10/2024", "DD/MM/YYYY");
       break;
     case 'northernjutland':
-      destinationStartDate = moment("01/04/2023", "DD/MM/YYYY");
-      destinationEndDate = moment("31/10/2023", "DD/MM/YYYY");
+      destinationStartDate = moment("01/04/2024", "DD/MM/YYYY");
+      destinationEndDate = moment("31/10/2024", "DD/MM/YYYY");
       break;
     case 'mallorca':
-      destinationStartDate = moment("15/07/2023", "DD/MM/YYYY");
-      destinationEndDate = moment("30/11/2023", "DD/MM/YYYY");
+      destinationStartDate = moment("15/07/2024", "DD/MM/YYYY");
+      destinationEndDate = moment("30/11/2024", "DD/MM/YYYY");
       break;
     case 'bornholm':
-      destinationStartDate = moment("01/06/2023", "DD/MM/YYYY");
-      destinationEndDate = moment("30/11/2023", "DD/MM/YYYY");
+      destinationStartDate = moment("01/06/2024", "DD/MM/YYYY");
+      destinationEndDate = moment("30/11/2024", "DD/MM/YYYY");
       break;
     default:
-      destinationStartDate = moment("01/06/2023", "DD/MM/YYYY");
-      destinationEndDate = moment("30/11/2023", "DD/MM/YYYY");
+      destinationStartDate = moment("01/06/2024", "DD/MM/YYYY");
+      destinationEndDate = moment("30/11/2024", "DD/MM/YYYY");
   }
 
   //Ensure that Start date is always at least earliest days
