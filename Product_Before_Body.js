@@ -132,35 +132,43 @@ function getDestinationDates(dest) {
   //TODO: Get dates from hidden fields from CMS?
 
   const minLeadTimeDays = 2; // Minimum number of days til rental starts
+  const maxBookingHorizon = 365; // Minimum number of days til rental starts
 
   let earliestStartDate = moment().add(minLeadTimeDays, 'days');
+  let lastestEndDate = moment().add(maxBookingHorizon, 'days');
+
+  let destinationStartDate =  earliestStartDate.format('DD-MM-YYYY');
+  let destinationEndDate = lastestEndDate.format('DD-MM-YYYY');
+
+  /*
   let destinationStartDate, destinationEndDate;
 
   switch (dest.toLowerCase()) {
     case 'zealand':
-      destinationStartDate = moment("01/04/2024", "DD/MM/YYYY");
-      destinationEndDate = moment("31/10/2024", "DD/MM/YYYY");
+      destinationStartDate = moment("01/01/2024", "DD/MM/YYYY");
+      destinationEndDate = moment("31/12/2024", "DD/MM/YYYY");
       break;
     case 'northernjutland':
-      destinationStartDate = moment("01/04/2024", "DD/MM/YYYY");
-      destinationEndDate = moment("31/10/2024", "DD/MM/YYYY");
+      destinationStartDate = moment("01/01/2024", "DD/MM/YYYY");
+      destinationEndDate = moment("31/12/2024", "DD/MM/YYYY");
       break;
     case 'mallorca':
-      destinationStartDate = moment("01/04/2024", "DD/MM/YYYY");
-      destinationEndDate = moment("30/11/2024", "DD/MM/YYYY");
+      destinationStartDate = moment("01/01/2024", "DD/MM/YYYY");
+      destinationEndDate = moment("31/12/2024", "DD/MM/YYYY");
       break;
     case 'bornholm':
-      destinationStartDate = moment("01/04/2024", "DD/MM/YYYY");
-      destinationEndDate = moment("30/11/2024", "DD/MM/YYYY");
+      destinationStartDate = moment("01/01/2024", "DD/MM/YYYY");
+      destinationEndDate = moment("31/12/2024", "DD/MM/YYYY");
       break;
     default:
-      destinationStartDate = moment("01/04/2024", "DD/MM/YYYY");
-      destinationEndDate = moment("30/11/2024", "DD/MM/YYYY");
+      destinationStartDate = moment("01/01/2024", "DD/MM/YYYY");
+      destinationEndDate = moment("12/12/2024", "DD/MM/YYYY");
   }
 
   //Ensure that Start date is always at least earliest days
   destinationStartDate = moment.max(earliestStartDate, destinationStartDate).format('DD-MM-YYYY');
   destinationEndDate = destinationEndDate.format('DD-MM-YYYY');
+  */
   return {
     destinationStartDate,
     destinationEndDate
